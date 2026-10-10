@@ -324,3 +324,45 @@ details[open] summary { color: var(--vermelho); margin-bottom: 0.5rem; }
 
 /* Filtro: esconder elementos que não correspondem */
 .escondido-filtro { display: none !important; }
+
+/* ===== Novo fundo (hero + cabeçalhos das páginas) ===== */
+.hero-bg,
+.pagina-topo::before {
+  opacity: 1;
+  background:
+    radial-gradient(60% 75% at 88% 8%, rgba(212, 16, 27, 0.60), transparent 70%),
+    radial-gradient(45% 60% at 4% 105%, rgba(242, 183, 5, 0.17), transparent 70%),
+    repeating-linear-gradient(115deg, rgba(212, 16, 27, 0.10) 0 42px, transparent 42px 130px),
+    linear-gradient(160deg, #101016 0%, #09090b 58%, #16070a 100%);
+  filter: none;
+  transform: none;
+  animation: none;
+}
+
+.hero-bg::after,
+.pagina-topo::before {
+  background-repeat: no-repeat;
+}
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800' fill='none' stroke='white' stroke-opacity='0.10' stroke-width='2'%3E%3Ccircle cx='400' cy='400' r='330'/%3E%3Ccircle cx='400' cy='400' r='150' stroke-opacity='0.07'/%3E%3Cline x1='0' y1='400' x2='800' y2='400'/%3E%3Ccircle cx='400' cy='400' r='7' fill='white' fill-opacity='0.14' stroke='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 84% 50%;
+  background-size: min(820px, 90vw);
+  animation: brilho 20s ease-in-out infinite alternate;
+}
+
+.hero::before {
+  background: linear-gradient(100deg, rgba(9, 9, 11, 0.55) 10%, rgba(9, 9, 11, 0.15) 60%, transparent 100%);
+}
+
+.pagina-topo::before {
+  background:
+    radial-gradient(55% 90% at 92% 0%, rgba(212, 16, 27, 0.45), transparent 70%),
+    repeating-linear-gradient(115deg, rgba(212, 16, 27, 0.08) 0 36px, transparent 36px 110px),
+    linear-gradient(160deg, #101016, #09090b 70%);
+}
+
+@keyframes brilho { to { transform: translate3d(-2.5%, 2%, 0) scale(1.05); } }
