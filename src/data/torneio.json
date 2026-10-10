@@ -1,0 +1,32 @@
+{
+  "nome": "Nelas Cup",
+  "edicao": "2027",
+  "slogan": "O torneio que põe Nelas no mapa do futebol",
+  "descricao": "Dois dias de jogos, festa e amizade. Clubes de todo o país reúnem-se em Nelas para viver o Nelas Cup, organizado pelo Sport Lisboa e Nelas.",
+  "data_inicio": "2027-06-26",
+  "data_texto": "26 e 27 de junho de 2027 (data a confirmar)",
+  "dias": 2,
+  "local": "Nelas (local dos jogos a confirmar)",
+  "organizador": "Sport Lisboa e Nelas",
+  "email": "geral@exemplo.pt",
+  "telefone": "+351 000 000 000",
+  "morada": "Nelas, Viseu",
+  "facebook": "",
+  "instagram": "",
+  "inscricoes_abertas": true,
+  "limite_inscricoes": "2027-05-15",
+  "formulario_chave": "COLOCAR_AQUI_A_CHAVE_WEB3FORMS",
+  "dossier_patrocinio": "",
+  "equipas_previstas": 24,
+  "categorias": ["Sub-7", "Sub-9", "Sub-11", "Sub-13", "Sub-15"],
+  "o_que_inclui": [
+    { "titulo": "Jogos para todos", "texto": "Todas as equipas têm garantido um número mínimo de jogos." },
+    { "titulo": "Ambiente de festa", "texto": "Animação, música e zona de convívio para atletas, treinadores e famílias." },
+    { "titulo": "Lembranças e prémios", "texto": "Troféus e medalhas para os destaques de cada categoria." }
+  ],
+  "formato": [
+    { "titulo": "Fase de grupos", "texto": "As equipas de cada categoria são divididas em grupos e jogam todas contra todas. (Texto de exemplo, editar no painel.)" },
+    { "titulo": "Fase final", "texto": "Os melhores de cada grupo seguem para as meias-finais e final. (Texto de exemplo, editar no painel.)" },
+    { "titulo": "Entrega de prémios", "texto": "Cerimónia no final de cada dia com medalhas, troféus e prémios individuais." }
+  ]
+}

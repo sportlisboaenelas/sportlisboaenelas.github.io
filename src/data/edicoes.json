@@ -1,0 +1,28 @@
+{
+  "items": [
+    {
+      "ano": "2026",
+      "titulo": "Edição 2026",
+      "resumo": "Texto de exemplo. Edite no painel para contar como foi a edição: equipas presentes, ambiente, momentos marcantes.",
+      "campeao": "A preencher",
+      "equipas": "",
+      "fotos": []
+    },
+    {
+      "ano": "2025",
+      "titulo": "Edição 2025",
+      "resumo": "Texto de exemplo. Edite no painel para contar como foi a edição.",
+      "campeao": "A preencher",
+      "equipas": "",
+      "fotos": []
+    },
+    {
+      "ano": "2024",
+      "titulo": "Edição 2024",
+      "resumo": "Texto de exemplo. Edite no painel para contar como foi a edição.",
+      "campeao": "A preencher",
+      "equipas": "",
+      "fotos": []
+    }
+  ]
+}

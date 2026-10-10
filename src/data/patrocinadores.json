@@ -1,0 +1,93 @@
+{
+  "items": [
+    { "nome": "Patrocinador Principal", "nivel": "principal", "logo": "", "link": "" },
+    { "nome": "Patrocinador Ouro 1", "nivel": "ouro", "logo": "", "link": "" },
+    { "nome": "Patrocinador Ouro 2", "nivel": "ouro", "logo": "", "link": "" },
+    { "nome": "Patrocinador Prata 1", "nivel": "prata", "logo": "", "link": "" },
+    { "nome": "Patrocinador Prata 2", "nivel": "prata", "logo": "", "link": "" },
+    { "nome": "Apoio 1", "nivel": "apoio", "logo": "", "link": "" },
+    { "nome": "Apoio 2", "nivel": "apoio", "logo": "", "link": "" }
+  ],
+  "alcance": [
+    { "valor": "3000", "sufixo": "+", "legenda": "Seguidores nas redes do clube (a confirmar)" },
+    { "valor": "24", "sufixo": "", "legenda": "Equipas previstas" },
+    { "valor": "2", "sufixo": "", "legenda": "Dias de torneio" },
+    { "valor": "500", "sufixo": "+", "legenda": "Pessoas por dia no recinto (estimativa, a confirmar)" }
+  ],
+  "beneficios": [
+    { "icone": "📣", "titulo": "Visibilidade local e regional", "texto": "A sua marca vista por clubes, atletas e famílias de toda a região, no recinto e online." },
+    { "icone": "🤝", "titulo": "Associação ao desporto jovem", "texto": "Apoiar a formação desportiva reforça a imagem da empresa junto da comunidade." },
+    { "icone": "📱", "titulo": "Presença digital", "texto": "Logótipo no site e menções nas redes sociais antes, durante e depois do torneio." },
+    { "icone": "🎯", "titulo": "Contacto direto com o público", "texto": "Banca ou ação no recinto para apresentar produtos, oferecer brindes e angariar clientes." },
+    { "icone": "🧾", "titulo": "Fatura e benefícios fiscais", "texto": "Emitimos fatura de publicidade. Confirme com o seu contabilista o enquadramento fiscal." },
+    { "icone": "🏆", "titulo": "Naming e prémios", "texto": "Dê o seu nome a troféus e prémios individuais, como Melhor Marcador ou Melhor Guarda-Redes." }
+  ],
+  "pacotes": [
+    {
+      "nome": "Principal",
+      "preco": "Sob consulta",
+      "vagas": "1 vaga",
+      "destaque": false,
+      "incluido": [
+        "Nome associado ao torneio (naming)",
+        "Logótipo em destaque no topo do site",
+        "Lona premium no recinto",
+        "Logótipo nos cartazes, bilhetes e prémios",
+        "Menção no speaker durante os jogos",
+        "Vídeo publicitário produzido pelo clube",
+        "Banca no recinto",
+        "Publicações dedicadas nas redes sociais",
+        "Presença na entrega de prémios"
+      ]
+    },
+    {
+      "nome": "Ouro",
+      "preco": "Sob consulta",
+      "vagas": "Vagas limitadas",
+      "destaque": true,
+      "incluido": [
+        "Logótipo na página inicial do site",
+        "Lona atrás da baliza",
+        "Menção no speaker",
+        "Banca no recinto",
+        "Publicações nas redes sociais",
+        "Nome num troféu ou prémio individual"
+      ]
+    },
+    {
+      "nome": "Prata",
+      "preco": "Sob consulta",
+      "vagas": "Vagas limitadas",
+      "destaque": false,
+      "incluido": [
+        "Logótipo na página de patrocinadores",
+        "Lona lateral no recinto",
+        "Menção no speaker",
+        "Publicação nas redes sociais"
+      ]
+    },
+    {
+      "nome": "Apoio",
+      "preco": "Sob consulta",
+      "vagas": "Sem limite",
+      "destaque": false,
+      "incluido": [
+        "Logótipo na página de patrocinadores",
+        "Agradecimento nas redes sociais",
+        "Possibilidade de oferecer brindes aos participantes"
+      ]
+    }
+  ],
+  "extras": [
+    { "titulo": "Naming de troféu", "texto": "Melhor Marcador, Melhor Guarda-Redes, Melhor Jogador, Fair Play." },
+    { "titulo": "Zona de convívio", "texto": "Patrocine a zona de restauração ou de descanso das famílias." },
+    { "titulo": "Welcome kit", "texto": "A sua marca ou brinde no kit entregue a cada equipa." },
+    { "titulo": "Vídeo publicitário", "texto": "O clube produz um vídeo da sua empresa para passar no recinto e nas redes." },
+    { "titulo": "Match sponsor", "texto": "Patrocine um jogo ou uma final, com a sua marca em destaque." }
+  ],
+  "passos": [
+    { "titulo": "Pede uma proposta", "texto": "Preencha o formulário abaixo ou escreva-nos. Respondemos em poucos dias." },
+    { "titulo": "Escolhe o pacote", "texto": "Ajustamos as contrapartidas ao que faz sentido para a sua empresa." },
+    { "titulo": "Fecha e aparece", "texto": "Assinamos o acordo, emitimos fatura e a sua marca entra no site e no recinto." }
+  ]
+}

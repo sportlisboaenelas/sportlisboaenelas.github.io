@@ -1,0 +1,170 @@
+---
+import '../styles/global.css';
+import torneio from '../data/torneio.json';
+
+const { titulo, descricao = torneio.descricao } = Astro.props;
+const pagina = Astro.url.pathname;
+const fullTitle = titulo ? `${titulo} | ${torneio.nome} ${torneio.edicao}` : `${torneio.nome} ${torneio.edicao} | ${torneio.slogan}`;
+
+const menu = [
+  { href: '/', texto: 'Início' },
+  {
+    texto: 'Torneio',
+    sub: [
+      { href: '/torneio/', texto: 'O torneio' },
+      { href: '/programa/', texto: 'Programa' },
+      { href: '/equipas/', texto: 'Equipas' },
+      { href: '/regulamento/', texto: 'Regulamento e FAQ' },
+    ],
+  },
+  {
+    texto: 'Competição',
+    sub: [
+      { href: '/jogos/', texto: 'Jogos e resultados' },
+      { href: '/classificacoes/', texto: 'Classificações' },
+    ],
+  },
+  {
+    texto: 'Media',
+    sub: [
+      { href: '/noticias/', texto: 'Notícias' },
+      { href: '/galeria/', texto: 'Galeria' },
+      { href: '/edicoes/', texto: 'Edições anteriores' },
+    ],
+  },
+  {
+    texto: 'Informações',
+    sub: [
+      { href: '/informacoes/', texto: 'Como chegar e alojamento' },
+      { href: '/nelas/', texto: 'Visitar Nelas' },
+      { href: '/contactos/', texto: 'Contactos' },
+    ],
+  },
+  { href: '/patrocinadores/', texto: 'Patrocinadores' },
+];
+
+const ativo = (href) => (href === '/' ? pagina === '/' : pagina.startsWith(href));
+const subAtivo = (sub) => sub.some((s) => ativo(s.href));
+const todosLinks = menu.flatMap((m) => (m.sub ? m.sub : [m]));
+---
+
+<!doctype html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={descricao} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={descricao} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/images/logo-sln.jpg" />
+    <meta name="theme-color" content="#09090b" />
+    <link rel="icon" href="/images/logo-sln-pequeno.jpg" type="image/jpeg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="container">
+        <span>📅 {torneio.data_texto} · 📍 {torneio.local}</span>
+        {torneio.inscricoes_abertas ? (
+          <a href="/inscricao/">Inscrições abertas → Inscrever equipa</a>
+        ) : (
+          <span>Inscrições encerradas</span>
+        )}
+      </div>
+    </div>
+
+    <header class="site-header" id="topo">
+      <div class="container nav">
+        <a href="/" class="brand" aria-label={`${torneio.nome}, página inicial`}>
+          <img src="/images/logo-sln-pequeno.jpg" alt="Escudo do Sport Lisboa e Nelas" width="50" height="50" />
+          <span class="brand-text">{torneio.nome} <strong>{torneio.edicao}</strong>
+            <small>{torneio.organizador}</small>
+          </span>
+        </a>
+        <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false" data-nav-toggle>
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" data-nav>
+          {menu.map((m) =>
+            m.sub ? (
+              <li class="tem-sub">
+                <a href="#" class={subAtivo(m.sub) ? 'ativo' : ''} aria-haspopup="true">{m.texto}</a>
+                <ul class="sub">
+                  {m.sub.map((s) => (
+                    <li><a href={s.href} class={ativo(s.href) ? 'ativo' : ''}>{s.texto}</a></li>
+                  ))}
+                </ul>
+              </li>
+            ) : (
+              <li><a href={m.href} class={ativo(m.href) ? 'ativo' : ''}>{m.texto}</a></li>
+            )
+          )}
+          {torneio.inscricoes_abertas && (
+            <li><a href="/inscricao/" class="btn btn-vermelho btn-pequeno">Inscrever equipa</a></li>
+          )}
+        </ul>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <div class="footer-logo">
+            <img src="/images/logo-sln-pequeno.jpg" alt="Escudo do Sport Lisboa e Nelas" width="64" height="64" loading="lazy" />
+            <p class="footer-titulo" style="margin:0">{torneio.nome} {torneio.edicao}</p>
+          </div>
+          <p>{torneio.slogan}</p>
+          <p class="pequeno">Organização: {torneio.organizador}</p>
+        </div>
+        <div>
+          <p class="footer-titulo">Torneio</p>
+          <ul>
+            <li><a href="/torneio/">O torneio</a></li>
+            <li><a href="/programa/">Programa</a></li>
+            <li><a href="/equipas/">Equipas</a></li>
+            <li><a href="/jogos/">Jogos e resultados</a></li>
+            <li><a href="/classificacoes/">Classificações</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-titulo">Mais</p>
+          <ul>
+            <li><a href="/noticias/">Notícias</a></li>
+            <li><a href="/galeria/">Galeria</a></li>
+            <li><a href="/edicoes/">Edições anteriores</a></li>
+            <li><a href="/informacoes/">Como chegar</a></li>
+            <li><a href="/patrocinadores/">Patrocinadores</a></li>
+            <li><a href="/inscricao/">Inscrição de equipas</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-titulo">Contactos</p>
+          <ul>
+            <li><a href={`mailto:${torneio.email}`}>{torneio.email}</a></li>
+            <li>{torneio.telefone}</li>
+            <li>{torneio.morada}</li>
+            {torneio.facebook && <li><a href={torneio.facebook} target="_blank" rel="noopener">Facebook</a></li>}
+            {torneio.instagram && <li><a href={torneio.instagram} target="_blank" rel="noopener">Instagram</a></li>}
+          </ul>
+        </div>
+      </div>
+      <div class="container footer-baixo">
+        <span>© {new Date().getFullYear()} {torneio.organizador}. Todos os direitos reservados.</span>
+        <a href="#topo">Voltar ao topo ↑</a>
+      </div>
+    </footer>
+
+    <script is:inline src="/js/main.js" defer></script>
+  </body>
+</html>

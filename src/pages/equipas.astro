@@ -1,0 +1,41 @@
+---
+import Base from '../layouts/Base.astro';
+import torneio from '../data/torneio.json';
+import equipas from '../data/equipas.json';
+
+const iniciais = (nome) => nome.split(' ').filter(Boolean).slice(0, 2).map((p) => p[0]).join('').toUpperCase();
+---
+
+<Base titulo="Equipas" descricao={`Equipas inscritas no ${torneio.nome} ${torneio.edicao}.`}>
+  <div class="pagina-topo">
+    <div class="container">
+      <div class="migalhas"><a href="/">Início</a> / Equipas</div>
+      <h1>Equipas inscritas</h1>
+      <p>Clubes que já fazem parte do {torneio.nome} {torneio.edicao}.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="dias" data-filtro-grupo="equipas">
+        <button type="button" class="filtro-btn ativo" data-filtro="todas">Todas</button>
+        {torneio.categorias.map((c) => (<button type="button" class="filtro-btn" data-filtro={c}>{c}</button>))}
+      </div>
+      <div class="grelha grelha-3">
+        {equipas.items.map((e) => (
+          <article class="cartao equipa-card" data-cat={e.categoria}>
+            <div class="escudo">{e.escudo ? <img src={e.escudo} alt={e.clube} loading="lazy" /> : iniciais(e.clube)}</div>
+            <div>
+              <h3>{e.clube}</h3>
+              <div class="sub-t">{e.categoria}{e.localidade ? ` · ${e.localidade}` : ''}</div>
+              <span class={`selo${e.estado === 'Confirmada' ? '' : ' espera'}`}>{e.estado}</span>
+            </div>
+          </article>
+        ))}
+      </div>
+      {torneio.inscricoes_abertas && (
+        <p class="centro" style="margin-top:2.5rem"><a class="btn btn-vermelho" href="/inscricao/">Inscrever a minha equipa</a></p>
+      )}
+    </div>
+  </section>
+</Base>

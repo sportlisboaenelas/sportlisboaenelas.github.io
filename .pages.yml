@@ -1,0 +1,293 @@
+media:
+  input: public/images
+  output: /images
+
+content:
+  - name: torneio
+    label: Dados do torneio
+    type: file
+    path: src/data/torneio.json
+    format: json
+    fields:
+      - { name: nome, label: Nome do torneio, type: string }
+      - { name: edicao, label: Ano da edição, type: string }
+      - { name: slogan, label: Frase de destaque, type: string }
+      - { name: descricao, label: Descrição curta, type: text }
+      - { name: data_inicio, label: "Data de início (AAAA-MM-DD, para a contagem decrescente)", type: string }
+      - { name: data_texto, label: Data (texto que aparece no site), type: string }
+      - { name: dias, label: Número de dias de torneio, type: number }
+      - { name: local, label: Local, type: string }
+      - { name: organizador, label: Organizador, type: string }
+      - { name: email, label: Email de contacto, type: string }
+      - { name: telefone, label: Telefone, type: string }
+      - { name: morada, label: Morada, type: string }
+      - { name: facebook, label: Link do Facebook, type: string }
+      - { name: instagram, label: Link do Instagram, type: string }
+      - { name: inscricoes_abertas, label: "Inscrições abertas?", type: boolean }
+      - { name: limite_inscricoes, label: "Data limite de inscrição (AAAA-MM-DD)", type: string }
+      - { name: formulario_chave, label: Chave Web3Forms (formulários), type: string }
+      - { name: dossier_patrocinio, label: "Link do dossier de patrocínio (PDF)", type: string }
+      - { name: equipas_previstas, label: Equipas previstas, type: number }
+      - { name: categorias, label: Categorias, type: string, list: true }
+      - name: o_que_inclui
+        label: O que inclui o torneio
+        type: object
+        list: true
+        fields:
+          - { name: titulo, label: Título, type: string }
+          - { name: texto, label: Texto, type: text }
+      - name: formato
+        label: Formato do torneio
+        type: object
+        list: true
+        fields:
+          - { name: titulo, label: Título, type: string }
+          - { name: texto, label: Texto, type: text }
+
+  - name: programa
+    label: Programa
+    type: file
+    path: src/data/programa.json
+    format: json
+    fields:
+      - name: dias
+        label: Dias
+        type: object
+        list: true
+        fields:
+          - { name: titulo, label: "Dia da semana (ex. Sábado)", type: string }
+          - { name: data, label: "Data (ex. 26 de junho)", type: string }
+          - name: eventos
+            label: Eventos
+            type: object
+            list: true
+            fields:
+              - { name: hora, label: Hora, type: string }
+              - { name: titulo, label: Título, type: string }
+              - { name: texto, label: Descrição, type: text }
+
+  - name: equipas
+    label: Equipas inscritas
+    type: file
+    path: src/data/equipas.json
+    format: json
+    fields:
+      - name: items
+        label: Equipas
+        type: object
+        list: true
+        fields:
+          - { name: clube, label: Clube, type: string }
+          - { name: categoria, label: Categoria, type: string }
+          - { name: localidade, label: Localidade, type: string }
+          - name: estado
+            label: Estado
+            type: select
+            options:
+              values: [Confirmada, Em análise]
+          - { name: escudo, label: Escudo do clube, type: image }
+
+  - name: jogos
+    label: Jogos e resultados
+    type: file
+    path: src/data/jogos.json
+    format: json
+    fields:
+      - { name: aviso, label: Aviso no topo da página, type: text }
+      - name: items
+        label: Jogos
+        type: object
+        list: true
+        fields:
+          - { name: dia, label: "Dia (ex. Sábado, 26 de junho)", type: string }
+          - { name: hora, label: Hora, type: string }
+          - { name: categoria, label: Categoria, type: string }
+          - { name: fase, label: "Fase (ex. Grupo A, Meia-final)", type: string }
+          - { name: campo, label: Campo, type: string }
+          - { name: casa, label: Equipa da casa, type: string }
+          - { name: fora, label: Equipa de fora, type: string }
+          - { name: golos_casa, label: "Golos da casa (vazio até haver resultado)", type: string }
+          - { name: golos_fora, label: "Golos de fora (vazio até haver resultado)", type: string }
+
+  - name: classificacoes
+    label: Classificações
+    type: file
+    path: src/data/classificacoes.json
+    format: json
+    fields:
+      - { name: aviso, label: Aviso no topo da página, type: text }
+      - name: grupos
+        label: Grupos
+        type: object
+        list: true
+        fields:
+          - { name: titulo, label: "Título (ex. Sub-11 · Grupo A)", type: string }
+          - name: linhas
+            label: Equipas
+            type: object
+            list: true
+            fields:
+              - { name: equipa, label: Equipa, type: string }
+              - { name: j, label: Jogos, type: number }
+              - { name: v, label: Vitórias, type: number }
+              - { name: e, label: Empates, type: number }
+              - { name: d, label: Derrotas, type: number }
+              - { name: gm, label: Golos marcados, type: number }
+              - { name: gs, label: Golos sofridos, type: number }
+              - { name: pts, label: Pontos, type: number }
+
+  - name: noticias
+    label: Notícias
+    type: file
+    path: src/data/noticias.json
+    format: json
+    fields:
+      - name: items
+        label: Notícias
+        type: object
+        list: true
+        fields:
+          - { name: titulo, label: Título, type: string }
+          - { name: data, label: "Data (AAAA-MM-DD)", type: string }
+          - { name: resumo, label: Texto, type: text }
+          - { name: imagem, label: Imagem, type: image }
+
+  - name: galeria
+    label: Galeria
+    type: file
+    path: src/data/galeria.json
+    format: json
+    fields:
+      - { name: fotos, label: Fotografias, type: image, list: true }
+
+  - name: edicoes
+    label: Edições anteriores
+    type: file
+    path: src/data/edicoes.json
+    format: json
+    fields:
+      - name: items
+        label: Edições
+        type: object
+        list: true
+        fields:
+          - { name: ano, label: Ano, type: string }
+          - { name: titulo, label: Título, type: string }
+          - { name: resumo, label: Resumo, type: text }
+          - { name: campeao, label: Vencedor, type: string }
+          - { name: equipas, label: Equipas participantes, type: text }
+          - { name: fotos, label: Fotos, type: image, list: true }
+
+  - name: pontos
+    label: Nelas para visitar
+    type: file
+    path: src/data/pontos.json
+    format: json
+    fields:
+      - name: items
+        label: Pontos turísticos
+        type: object
+        list: true
+        fields:
+          - { name: nome, label: Nome, type: string }
+          - { name: tipo, label: "Tipo (ex. Termas, Património)", type: string }
+          - { name: descricao, label: Descrição, type: text }
+          - { name: imagem, label: Foto, type: image }
+          - { name: mapa, label: Pesquisa no Google Maps, type: string }
+
+  - name: informacoes
+    label: Informações úteis
+    type: file
+    path: src/data/informacoes.json
+    format: json
+    fields:
+      - { name: mapa, label: Pesquisa do mapa, type: string }
+      - name: blocos
+        label: Blocos
+        type: object
+        list: true
+        fields:
+          - { name: icone, label: Ícone (emoji), type: string }
+          - { name: titulo, label: Título, type: string }
+          - { name: itens, label: Linhas de texto, type: string, list: true }
+
+  - name: patrocinadores
+    label: Patrocinadores (logótipos)
+    type: file
+    path: src/data/patrocinadores.json
+    format: json
+    fields:
+      - name: items
+        label: Patrocinadores
+        type: object
+        list: true
+        fields:
+          - { name: nome, label: Nome, type: string }
+          - name: nivel
+            label: Nível
+            type: select
+            options:
+              values: [principal, ouro, prata, apoio]
+          - { name: logo, label: Logótipo, type: image }
+          - { name: link, label: Link do site, type: string }
+      - name: alcance
+        label: Números de alcance
+        type: object
+        list: true
+        fields:
+          - { name: valor, label: Valor (só número), type: string }
+          - { name: sufixo, label: "Sufixo (ex. +)", type: string }
+          - { name: legenda, label: Legenda, type: string }
+      - name: beneficios
+        label: Benefícios de patrocinar
+        type: object
+        list: true
+        fields:
+          - { name: icone, label: Ícone (emoji), type: string }
+          - { name: titulo, label: Título, type: string }
+          - { name: texto, label: Texto, type: text }
+      - name: pacotes
+        label: Pacotes de patrocínio
+        type: object
+        list: true
+        fields:
+          - { name: nome, label: Nome do pacote, type: string }
+          - { name: preco, label: "Preço (ex. 500 € ou Sob consulta)", type: string }
+          - { name: vagas, label: "Vagas (ex. 1 vaga)", type: string }
+          - { name: destaque, label: "Destacar como mais procurado?", type: boolean }
+          - { name: incluido, label: O que inclui, type: string, list: true }
+      - name: extras
+        label: Ações e extras
+        type: object
+        list: true
+        fields:
+          - { name: titulo, label: Título, type: string }
+          - { name: texto, label: Texto, type: text }
+      - name: passos
+        label: Como funciona (passos)
+        type: object
+        list: true
+        fields:
+          - { name: titulo, label: Título, type: string }
+          - { name: texto, label: Texto, type: text }
+
+  - name: regulamento
+    label: Regulamento e perguntas
+    type: file
+    path: src/data/regulamento.json
+    format: json
+    fields:
+      - name: regras
+        label: Regras
+        type: object
+        list: true
+        fields:
+          - { name: titulo, label: Título, type: string }
+          - { name: texto, label: Texto, type: text }
+      - name: faq
+        label: Perguntas frequentes
+        type: object
+        list: true
+        fields:
+          - { name: pergunta, label: Pergunta, type: string }
+          - { name: resposta, label: Resposta, type: text }

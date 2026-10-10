@@ -1,0 +1,39 @@
+{
+  "items": [
+    {
+      "nome": "Santar",
+      "tipo": "Aldeia e património",
+      "descricao": "Aldeia conhecida pelos seus solares e casas senhoriais, rodeada de vinha. Ideal para um passeio a pé entre história e paisagem.",
+      "imagem": "",
+      "mapa": "Santar, Nelas"
+    },
+    {
+      "nome": "Caldas da Felgueira",
+      "tipo": "Termas e bem-estar",
+      "descricao": "Termas com tradição na região, perfeitas para relaxar depois de um fim de semana de jogos.",
+      "imagem": "",
+      "mapa": "Caldas da Felgueira, Nelas"
+    },
+    {
+      "nome": "Vinhos do Dão",
+      "tipo": "Enoturismo",
+      "descricao": "Nelas está no coração da região vinhateira do Dão. Há quintas e adegas onde se podem provar e comprar vinhos da região.",
+      "imagem": "",
+      "mapa": "Adega Nelas, Dão"
+    },
+    {
+      "nome": "Igreja Matriz de Nelas",
+      "tipo": "Centro histórico",
+      "descricao": "Um ponto de partida para conhecer o centro da vila, os cafés e o comércio local.",
+      "imagem": "",
+      "mapa": "Igreja Matriz de Nelas"
+    },
+    {
+      "nome": "Gastronomia local",
+      "tipo": "Sabores da região",
+      "descricao": "Restaurantes e tascas com pratos tradicionais da Beira Alta. Ótimo para o almoço de equipa.",
+      "imagem": "",
+      "mapa": "Restaurantes Nelas"
+    }
+  ]
+}

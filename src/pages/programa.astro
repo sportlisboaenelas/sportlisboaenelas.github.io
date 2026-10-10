@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+import programa from '../data/programa.json';
+---
+
+<Base titulo="Programa" descricao="Programa completo do Nelas Cup: horários, cerimónias e fases do torneio.">
+  <div class="pagina-topo">
+    <div class="container">
+      <div class="migalhas"><a href="/">Início</a> / Programa</div>
+      <h1>Programa</h1>
+      <p>Horários do torneio. Podem sofrer alterações; avisaremos todos os clubes inscritos.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container" style="max-width:860px">
+      <div class="dias" data-tabs>
+        {programa.dias.map((d, i) => (
+          <button type="button" class={`dia-btn${i === 0 ? ' ativo' : ''}`} data-alvo={`dia-${i}`}>{d.titulo} · {d.data}</button>
+        ))}
+      </div>
+      {programa.dias.map((d, i) => (
+        <div class={`dia-painel${i === 0 ? ' ativo' : ''}`} id={`dia-${i}`}>
+          <ul class="linha-tempo">
+            {d.eventos.map((e) => (
+              <li>
+                <span class="hora">{e.hora}</span>
+                <span><strong>{e.titulo}</strong>{e.texto}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+</Base>

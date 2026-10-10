@@ -1,0 +1,213 @@
+---
+import Base from '../layouts/Base.astro';
+import torneio from '../data/torneio.json';
+import dados from '../data/patrocinadores.json';
+
+const niveis = [
+  { chave: 'principal', titulo: 'Patrocinador principal' },
+  { chave: 'ouro', titulo: 'Patrocinadores ouro' },
+  { chave: 'prata', titulo: 'Patrocinadores prata' },
+  { chave: 'apoio', titulo: 'Apoios' },
+];
+---
+
+<Base titulo="Patrocinadores" descricao={`Patrocine o ${torneio.nome} ${torneio.edicao}: pacotes, visibilidade e pedido de proposta.`}>
+  <div class="pagina-topo">
+    <div class="container">
+      <div class="migalhas"><a href="/">Início</a> / Patrocinadores</div>
+      <h1>Patrocine o {torneio.nome}</h1>
+      <p>Associe a sua marca a um torneio de futebol que junta clubes, atletas e famílias de toda a região.</p>
+      <p style="margin-top:1.4rem">
+        <a href="#proposta" class="btn btn-ouro pulsar">Pedir proposta</a>
+        {torneio.dossier_patrocinio && (
+          <a href={torneio.dossier_patrocinio} target="_blank" rel="noopener" class="btn btn-contorno">Descarregar dossier</a>
+        )}
+      </p>
+    </div>
+  </div>
+
+  <!-- Alcance -->
+  <section class="escura" style="padding-block:3rem">
+    <div class="container numeros">
+      {dados.alcance.map((a, i) => (
+        <div class={`numero revelar atraso-${(i % 3) + 1}`}>
+          <div class="n"><span data-contar={a.valor}>0</span>{a.sufixo}</div>
+          <div class="l">{a.legenda}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Porquê -->
+  <section>
+    <div class="container">
+      <div class="secao-titulo revelar">
+        <span class="sobretitulo">Porquê patrocinar</span>
+        <h2>O que a sua empresa ganha</h2>
+      </div>
+      <div class="grelha grelha-3">
+        {dados.beneficios.map((b, i) => (
+          <article class={`cartao revelar atraso-${(i % 3) + 1}`}>
+            <div class="icone">{b.icone}</div>
+            <h3>{b.titulo}</h3>
+            <p style="margin:0">{b.texto}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Pacotes -->
+  <section class="escura">
+    <div class="container">
+      <div class="secao-titulo centro revelar">
+        <span class="sobretitulo">Pacotes</span>
+        <h2>Escolha o seu nível</h2>
+        <p>Cada pacote pode ser ajustado. Fale connosco para uma proposta à medida.</p>
+      </div>
+      <div class="grelha grelha-4" style="align-items:stretch">
+        {dados.pacotes.map((p, i) => (
+          <article class={`cartao pacote revelar atraso-${(i % 3) + 1}${p.destaque ? ' destaque' : ''}`}>
+            <div class="nome">{p.nome}</div>
+            <div class="preco">{p.preco}</div>
+            <div class="vagas">{p.vagas}</div>
+            <ul>
+              {p.incluido.map((it) => (<li>{it}</li>))}
+            </ul>
+            <a href={`#proposta`} class={`btn ${p.destaque ? 'btn-ouro' : 'btn-vermelho'}`} data-pacote={p.nome}>Quero o pacote {p.nome}</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Extras -->
+  <section>
+    <div class="container">
+      <div class="secao-titulo revelar">
+        <span class="sobretitulo">À medida</span>
+        <h2>Ações e extras</h2>
+        <p>Pode juntar estas ações a qualquer pacote, ou escolher só uma delas.</p>
+      </div>
+      <div class="grelha grelha-3">
+        {dados.extras.map((x, i) => (
+          <article class={`cartao revelar atraso-${(i % 3) + 1}`}>
+            <h3 style="color:var(--vermelho)">{x.titulo}</h3>
+            <p style="margin:0">{x.texto}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Como funciona -->
+  <section class="branca">
+    <div class="container">
+      <div class="secao-titulo centro revelar">
+        <span class="sobretitulo">Simples</span>
+        <h2>Como funciona</h2>
+      </div>
+      <div class="grelha grelha-3 passos">
+        {dados.passos.map((p, i) => (
+          <article class={`cartao passo-card revelar atraso-${(i % 3) + 1}`}>
+            <h3>{p.titulo}</h3>
+            <p style="margin:0">{p.texto}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Quem já apoia -->
+  <section>
+    <div class="container">
+      <div class="secao-titulo revelar">
+        <span class="sobretitulo">Obrigado</span>
+        <h2>Quem já apoia</h2>
+      </div>
+      {niveis.map((n) => {
+        const lista = dados.items.filter((p) => p.nivel === n.chave);
+        return lista.length > 0 ? (
+          <div class={`nivel ${n.chave} revelar`}>
+            <h3>{n.titulo}</h3>
+            <div class="linha">
+              {lista.map((p) => (
+                <a class="patro" href={p.link || '#'} target={p.link ? '_blank' : undefined} rel="noopener">
+                  {p.logo ? <img src={p.logo} alt={p.nome} loading="lazy" /> : p.nome}
+                </a>
+              ))}
+            </div>
+          </div>
+        ) : null;
+      })}
+    </div>
+  </section>
+
+  <!-- Formulário -->
+  <section class="escura" id="proposta">
+    <div class="container" style="max-width:860px">
+      <div class="secao-titulo centro revelar">
+        <span class="sobretitulo">Vamos falar</span>
+        <h2>Pedir proposta de patrocínio</h2>
+        <p>Diga-nos quem é e o que procura. Respondemos com uma proposta ajustada à sua empresa.</p>
+      </div>
+
+      <form
+        id="form-patrocinio"
+        class="form-cartao"
+        novalidate
+        data-chave={torneio.formulario_chave}
+        data-email={torneio.email}
+        data-torneio={`${torneio.nome} ${torneio.edicao}`}
+        data-pacotes={JSON.stringify(dados.pacotes.map((p) => p.nome))}
+      >
+        <input type="text" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <div class="campos">
+          <div class="campo">
+            <label for="p-empresa">Empresa ou entidade <span class="obrig">*</span></label>
+            <input id="p-empresa" name="empresa" required autocomplete="organization" />
+          </div>
+          <div class="campo">
+            <label for="p-contacto">Pessoa de contacto <span class="obrig">*</span></label>
+            <input id="p-contacto" name="contacto" required autocomplete="name" />
+          </div>
+          <div class="campo">
+            <label for="p-email">Email <span class="obrig">*</span></label>
+            <input id="p-email" name="email" type="email" required autocomplete="email" />
+          </div>
+          <div class="campo">
+            <label for="p-tel">Telemóvel</label>
+            <input id="p-tel" name="telefone" type="tel" autocomplete="tel" />
+          </div>
+          <div class="campo">
+            <label for="p-pacote">Pacote de interesse</label>
+            <select id="p-pacote" name="pacote">
+              <option value="">Ainda não sei</option>
+              {dados.pacotes.map((p) => (<option value={p.nome}>{p.nome}</option>))}
+              <option value="À medida">Proposta à medida</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label for="p-orc">Orçamento aproximado</label>
+            <input id="p-orc" name="orcamento" placeholder="Ex.: 300 a 500 euros" />
+          </div>
+          <div class="campo largo">
+            <label for="p-msg">Mensagem</label>
+            <textarea id="p-msg" name="mensagem" placeholder="Conte-nos o que procura: visibilidade, ação no recinto, vídeo, naming..."></textarea>
+          </div>
+        </div>
+        <label class="check" style="margin-top:1rem"><input type="checkbox" id="p-rgpd" required /> <span>Autorizo o contacto para tratar deste pedido de patrocínio. <span class="obrig">*</span></span></label>
+        <div id="p-msg-erro" class="aviso erro escondido" role="alert"></div>
+        <button type="submit" class="btn btn-vermelho" id="p-enviar">Enviar pedido</button>
+      </form>
+
+      <div id="p-sucesso" class="form-cartao ok-painel escondido">
+        <div class="grande">✅</div>
+        <h2 style="justify-content:center">Pedido enviado!</h2>
+        <p id="p-sucesso-texto">Obrigado pelo interesse. Entramos em contacto em breve.</p>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline src="/js/patrocinio.js" defer></script>
+</Base>

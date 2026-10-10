@@ -1,0 +1,77 @@
+---
+import Base from '../layouts/Base.astro';
+import torneio from '../data/torneio.json';
+---
+
+<Base titulo="O torneio" descricao={`Tudo sobre o ${torneio.nome} ${torneio.edicao}: formato, categorias e o que inclui.`}>
+  <div class="pagina-topo">
+    <div class="container">
+      <div class="migalhas"><a href="/">Início</a> / Torneio</div>
+      <h1>O torneio</h1>
+      <p>{torneio.descricao}</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="grelha grelha-3">
+        <article class="cartao revelar"><div class="icone">📅</div><h3>Quando</h3><p style="margin:0">{torneio.data_texto}</p></article>
+        <article class="cartao revelar atraso-1"><div class="icone">📍</div><h3>Onde</h3><p style="margin:0">{torneio.local}</p></article>
+        <article class="cartao revelar atraso-2"><div class="icone">🏟️</div><h3>Organização</h3><p style="margin:0">{torneio.organizador}</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="escura">
+    <div class="container">
+      <div class="secao-titulo revelar">
+        <span class="sobretitulo">Formato</span>
+        <h2>Como funciona</h2>
+      </div>
+      <div class="grelha grelha-3">
+        {torneio.formato.map((f, i) => (
+          <article class={`cartao revelar atraso-${(i % 3) + 1}`}>
+            <h3>{f.titulo}</h3>
+            <p style="margin:0">{f.texto}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="secao-titulo revelar">
+        <span class="sobretitulo">Categorias</span>
+        <h2>Escalões em competição</h2>
+      </div>
+      <div class="grelha grelha-4">
+        {torneio.categorias.map((c, i) => (
+          <article class={`cartao revelar atraso-${(i % 3) + 1}`}>
+            <h3 style="margin:0;color:var(--vermelho)">{c}</h3>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="branca">
+    <div class="container">
+      <div class="secao-titulo revelar">
+        <span class="sobretitulo">Incluído</span>
+        <h2>O que a sua equipa recebe</h2>
+      </div>
+      <div class="grelha grelha-3">
+        {torneio.o_que_inclui.map((item, i) => (
+          <article class={`cartao revelar atraso-${(i % 3) + 1}`}>
+            <h3>{item.titulo}</h3>
+            <p style="margin:0">{item.texto}</p>
+          </article>
+        ))}
+      </div>
+      {torneio.inscricoes_abertas && (
+        <p class="centro" style="margin-top:2rem"><a class="btn btn-vermelho" href="/inscricao/">Inscrever equipa</a></p>
+      )}
+    </div>
+  </section>
+</Base>

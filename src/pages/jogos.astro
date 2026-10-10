@@ -1,0 +1,46 @@
+---
+import Base from '../layouts/Base.astro';
+import torneio from '../data/torneio.json';
+import jogos from '../data/jogos.json';
+
+const dias = [...new Set(jogos.items.map((j) => j.dia))];
+---
+
+<Base titulo="Jogos e resultados" descricao="Calendário e resultados de todos os jogos do Nelas Cup.">
+  <div class="pagina-topo">
+    <div class="container">
+      <div class="migalhas"><a href="/">Início</a> / Competição</div>
+      <h1>Jogos e resultados</h1>
+      <p>{jogos.aviso}</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container" style="max-width:900px">
+      <div class="dias" data-filtro-grupo="jogos">
+        <button type="button" class="filtro-btn ativo" data-filtro="todas">Todas</button>
+        {torneio.categorias.map((c) => (<button type="button" class="filtro-btn" data-filtro={c}>{c}</button>))}
+      </div>
+
+      {dias.map((dia) => (
+        <div>
+          <h3 style="margin-top:1.6rem">{dia}</h3>
+          {jogos.items.filter((j) => j.dia === dia).map((j) => (
+            <article class="jogo" data-cat={j.categoria}>
+              <div class="eq casa">{j.casa}</div>
+              <div class="centro-j">
+                {j.golos_casa !== '' && j.golos_fora !== '' ? (
+                  <span class="resultado">{j.golos_casa} - {j.golos_fora}</span>
+                ) : (
+                  <span class="hora-j">{j.hora}</span>
+                )}
+                <span class="meta">{j.categoria} · {j.fase}{j.campo ? ` · ${j.campo}` : ''}</span>
+              </div>
+              <div class="eq">{j.fora}</div>
+            </article>
+          ))}
+        </div>
+      ))}
+    </div>
+  </section>
+</Base>

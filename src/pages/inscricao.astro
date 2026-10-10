@@ -1,0 +1,122 @@
+---
+import Base from '../layouts/Base.astro';
+import torneio from '../data/torneio.json';
+
+const limite = torneio.limite_inscricoes
+  ? new Date(torneio.limite_inscricoes + 'T12:00:00').toLocaleDateString('pt-PT', { day: 'numeric', month: 'long', year: 'numeric' })
+  : '';
+---
+
+<Base titulo="Inscrição de equipas" descricao={`Inscreva o seu clube e as suas equipas no ${torneio.nome} ${torneio.edicao}.`}>
+  <div class="pagina-topo">
+    <div class="container">
+      <h1>Inscrição de equipas</h1>
+      <p>Preencha os dados do clube e das equipas. A organização recebe o pedido por email e confirma consigo.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container" style="max-width:860px">
+      {!torneio.inscricoes_abertas ? (
+        <div class="aviso erro">As inscrições estão encerradas. Para qualquer questão, contacte <a href={`mailto:${torneio.email}`}>{torneio.email}</a>.</div>
+      ) : (
+        <>
+          {limite && <div class="aviso">📅 Data limite de inscrição: <strong>{limite}</strong>. Os dados ficam guardados neste dispositivo enquanto preenche, por isso pode continuar mais tarde.</div>}
+
+          <form
+            id="form-inscricao"
+            novalidate
+            data-categorias={JSON.stringify(torneio.categorias)}
+            data-chave={torneio.formulario_chave}
+            data-email={torneio.email}
+            data-torneio={`${torneio.nome} ${torneio.edicao}`}
+          >
+            <input type="text" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+            <div class="form-cartao">
+              <h2><span class="passo">1</span> Dados do clube</h2>
+              <div class="campos">
+                <div class="campo largo">
+                  <label for="clube">Nome do clube <span class="obrig">*</span></label>
+                  <input id="clube" name="clube" required autocomplete="organization" />
+                </div>
+                <div class="campo">
+                  <label for="localidade">Localidade <span class="obrig">*</span></label>
+                  <input id="localidade" name="localidade" required />
+                </div>
+                <div class="campo">
+                  <label for="site">Site ou rede social</label>
+                  <input id="site" name="site" placeholder="https://" />
+                </div>
+                <div class="campo">
+                  <label for="responsavel">Responsável pela inscrição <span class="obrig">*</span></label>
+                  <input id="responsavel" name="responsavel" required autocomplete="name" />
+                </div>
+                <div class="campo">
+                  <label for="cargo">Cargo no clube</label>
+                  <input id="cargo" name="cargo" placeholder="Ex.: Presidente, Coordenador" />
+                </div>
+                <div class="campo">
+                  <label for="email">Email <span class="obrig">*</span></label>
+                  <input id="email" name="email" type="email" required autocomplete="email" />
+                </div>
+                <div class="campo">
+                  <label for="telefone">Telemóvel <span class="obrig">*</span></label>
+                  <input id="telefone" name="telefone" type="tel" required autocomplete="tel" />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-cartao">
+              <h2><span class="passo">2</span> Equipas</h2>
+              <p>Adicione uma equipa por cada categoria em que o clube quer participar.</p>
+              <div id="equipas"></div>
+              <button type="button" class="btn btn-escuro" id="add-equipa">+ Adicionar equipa</button>
+            </div>
+
+            <div class="form-cartao">
+              <h2><span class="passo">3</span> Informações extra</h2>
+              <div class="campos">
+                <div class="campo">
+                  <label for="alojamento">Precisa de alojamento?</label>
+                  <select id="alojamento" name="alojamento">
+                    <option>Não</option>
+                    <option>Sim</option>
+                    <option>Ainda não sei</option>
+                  </select>
+                </div>
+                <div class="campo">
+                  <label for="pessoas">Total de pessoas na comitiva</label>
+                  <input id="pessoas" name="pessoas" type="number" min="0" />
+                </div>
+                <div class="campo largo">
+                  <label for="observacoes">Observações</label>
+                  <textarea id="observacoes" name="observacoes" placeholder="Alergias, pedidos especiais, dúvidas..."></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-cartao">
+              <h2><span class="passo">4</span> Confirmação</h2>
+              <label class="check"><input type="checkbox" id="aceita-reg" required /> <span>Li e aceito o <a href="/regulamento/" target="_blank">regulamento</a> do torneio. <span class="obrig">*</span></span></label>
+              <label class="check"><input type="checkbox" id="aceita-rgpd" required /> <span>Autorizo o tratamento dos dados acima apenas para a organização do torneio. <span class="obrig">*</span></span></label>
+
+              <div id="msg" class="aviso erro escondido" role="alert"></div>
+              <button type="submit" class="btn btn-ouro" id="enviar">Enviar inscrição</button>
+            </div>
+          </form>
+
+          <div id="sucesso" class="form-cartao ok-painel escondido">
+            <div class="grande">✅</div>
+            <h2 style="justify-content:center">Inscrição enviada!</h2>
+            <p id="sucesso-texto">A organização vai entrar em contacto por email.</p>
+            <div class="resumo" id="resumo"></div>
+            <button class="btn btn-escuro no-print" type="button" onclick="window.print()">Imprimir comprovativo</button>
+          </div>
+        </>
+      )}
+    </div>
+  </section>
+
+  <script is:inline src="/js/inscricao.js" defer></script>
+</Base>

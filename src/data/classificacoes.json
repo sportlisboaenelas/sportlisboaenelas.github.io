@@ -1,0 +1,14 @@
+{
+  "aviso": "Tabelas de exemplo. Serão atualizadas durante o torneio.",
+  "grupos": [
+    {
+      "titulo": "Sub-11 · Grupo A",
+      "linhas": [
+        { "equipa": "Equipa A", "j": 0, "v": 0, "e": 0, "d": 0, "gm": 0, "gs": 0, "pts": 0 },
+        { "equipa": "Equipa B", "j": 0, "v": 0, "e": 0, "d": 0, "gm": 0, "gs": 0, "pts": 0 },
+        { "equipa": "Equipa C", "j": 0, "v": 0, "e": 0, "d": 0, "gm": 0, "gs": 0, "pts": 0 },
+        { "equipa": "Equipa D", "j": 0, "v": 0, "e": 0, "d": 0, "gm": 0, "gs": 0, "pts": 0 }
+      ]
+    }
+  ]
+}

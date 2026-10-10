@@ -1,0 +1,7 @@
+{
+  "items": [
+    { "clube": "Sport Lisboa e Nelas", "categoria": "Sub-11", "localidade": "Nelas", "estado": "Confirmada", "escudo": "" },
+    { "clube": "Clube exemplo A", "categoria": "Sub-9", "localidade": "Viseu", "estado": "Confirmada", "escudo": "" },
+    { "clube": "Clube exemplo B", "categoria": "Sub-13", "localidade": "Mangualde", "estado": "Em análise", "escudo": "" }
+  ]
+}

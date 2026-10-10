@@ -1,0 +1,13 @@
+{
+  "regras": [
+    { "titulo": "Inscrição", "texto": "A inscrição é feita pelo formulário do site. Cada clube pode inscrever várias equipas, em categorias diferentes." },
+    { "titulo": "Atletas", "texto": "Todos os atletas devem estar legalmente inscritos no clube e na categoria em que participam." },
+    { "titulo": "Formato dos jogos", "texto": "O formato e a duração dos jogos serão comunicados a todos os clubes inscritos. Texto de exemplo, editar no painel." },
+    { "titulo": "Comportamento", "texto": "O espírito do torneio é o convívio e o respeito. Qualquer comportamento antidesportivo pode levar à exclusão." }
+  ],
+  "faq": [
+    { "pergunta": "Até quando posso inscrever a minha equipa?", "resposta": "As inscrições terminam na data indicada na página de inscrição, ou antes se as vagas esgotarem." },
+    { "pergunta": "Posso inscrever mais do que uma equipa?", "resposta": "Sim. No formulário pode adicionar quantas equipas quiser, uma por categoria." },
+    { "pergunta": "Como sei que a inscrição foi recebida?", "resposta": "No fim do formulário aparece uma confirmação com o resumo, que pode imprimir. A organização entra depois em contacto por email." }
+  ]
+}

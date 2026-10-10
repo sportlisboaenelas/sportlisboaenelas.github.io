@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+import galeria from '../data/galeria.json';
+---
+
+<Base titulo="Galeria" descricao="Fotografias do Nelas Cup.">
+  <div class="pagina-topo">
+    <div class="container">
+      <div class="migalhas"><a href="/">Início</a> / Galeria</div>
+      <h1>Galeria</h1>
+      <p>Os melhores momentos do torneio em imagens.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      {galeria.fotos.length > 0 ? (
+        <div class="galeria">
+          {galeria.fotos.map((f) => (
+            <a href={f} target="_blank" rel="noopener"><img src={f} alt="Fotografia do Nelas Cup" loading="lazy" /></a>
+          ))}
+        </div>
+      ) : (
+        <div class="aviso">Ainda não há fotografias. Carregue-as no painel (Pages CMS → Galeria) e aparecem aqui.</div>
+      )}
+    </div>
+  </section>
+</Base>

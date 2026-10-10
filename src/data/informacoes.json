@@ -1,0 +1,55 @@
+{
+  "blocos": [
+    {
+      "icone": "🚗",
+      "titulo": "Como chegar",
+      "itens": [
+        "Nelas fica no distrito de Viseu, na região do Dão.",
+        "De carro, o acesso mais simples é pelas estradas principais da região (confirmar percurso no seu GPS).",
+        "Indicamos o local exato dos jogos no programa final."
+      ]
+    },
+    {
+      "icone": "🅿️",
+      "titulo": "Estacionamento",
+      "itens": [
+        "Haverá zona de estacionamento junto ao recinto (a confirmar).",
+        "Autocarros das equipas: contacte a organização para combinar o local de paragem."
+      ]
+    },
+    {
+      "icone": "🛏️",
+      "titulo": "Alojamento",
+      "itens": [
+        "Nelas e concelhos vizinhos têm hotéis, alojamento local e turismo rural.",
+        "Para grupos grandes, contacte-nos para ajudarmos a encontrar solução."
+      ]
+    },
+    {
+      "icone": "🍽️",
+      "titulo": "Restauração",
+      "itens": [
+        "Zona de restauração no recinto durante os dois dias.",
+        "Restaurantes locais com menus para equipas (a combinar com a organização)."
+      ]
+    },
+    {
+      "icone": "🩺",
+      "titulo": "Apoio médico",
+      "itens": [
+        "Equipa de primeiros socorros no recinto (a confirmar).",
+        "Centro de saúde e hospital mais próximos indicados à chegada."
+      ]
+    },
+    {
+      "icone": "📋",
+      "titulo": "Para as equipas",
+      "itens": [
+        "Chegar ao recinto 45 minutos antes do primeiro jogo.",
+        "Levar lista de atletas e documentos de identificação.",
+        "Levar duas cores de equipamento, se possível."
+      ]
+    }
+  ],
+  "mapa": "Nelas, Viseu"
+}

@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import reg from '../data/regulamento.json';
+---
+
+<Base titulo="Regulamento" descricao="Regulamento e perguntas frequentes do Nelas Cup.">
+  <div class="pagina-topo">
+    <div class="container">
+      <h1>Regulamento</h1>
+      <p>Regras do torneio e respostas às dúvidas mais comuns.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container" style="max-width:820px">
+      <h2 class="revelar">Regras</h2>
+      {reg.regras.map((r, i) => (
+        <article class="cartao revelar" style="margin-bottom:1rem">
+          <h3>{i + 1}. {r.titulo}</h3>
+          <p style="margin:0">{r.texto}</p>
+        </article>
+      ))}
+
+      <h2 class="revelar" style="margin-top:3rem">Perguntas frequentes</h2>
+      {reg.faq.map((f) => (
+        <details class="revelar">
+          <summary>{f.pergunta}</summary>
+          <p style="margin:0">{f.resposta}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+</Base>

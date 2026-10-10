@@ -1,0 +1,34 @@
+---
+import Base from '../layouts/Base.astro';
+import noticias from '../data/noticias.json';
+
+const lista = [...noticias.items].sort((a, b) => (a.data < b.data ? 1 : -1));
+const formatarData = (d) => new Date(d + 'T12:00:00').toLocaleDateString('pt-PT', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+
+<Base titulo="Notícias" descricao="Notícias e novidades do Nelas Cup.">
+  <div class="pagina-topo">
+    <div class="container">
+      <div class="migalhas"><a href="/">Início</a> / Notícias</div>
+      <h1>Notícias</h1>
+      <p>Novidades, avisos aos clubes e resumos de cada dia do torneio.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="grelha grelha-3">
+        {lista.map((n, i) => (
+          <article class={`cartao noticia revelar atraso-${(i % 3) + 1}`}>
+            <div class="capa">{n.imagem ? <img src={n.imagem} alt={n.titulo} loading="lazy" /> : <span>📰</span>}</div>
+            <div class="corpo">
+              <span class="data">{formatarData(n.data)}</span>
+              <h3>{n.titulo}</h3>
+              <p style="margin:0">{n.resumo}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+import torneio from '../data/torneio.json';
+---
+
+<Base titulo="Contactos" descricao={`Contactos da organização do ${torneio.nome}.`}>
+  <div class="pagina-topo">
+    <div class="container">
+      <h1>Contactos</h1>
+      <p>Tem dúvidas? Fale com a organização.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="grelha grelha-3">
+        <article class="cartao revelar">
+          <div class="icone">✉️</div>
+          <h3>Email</h3>
+          <p><a href={`mailto:${torneio.email}`}>{torneio.email}</a></p>
+        </article>
+        <article class="cartao revelar atraso-1">
+          <div class="icone">📞</div>
+          <h3>Telefone</h3>
+          <p>{torneio.telefone}</p>
+        </article>
+        <article class="cartao revelar atraso-2">
+          <div class="icone">📍</div>
+          <h3>Localização</h3>
+          <p>{torneio.morada}</p>
+          <p><a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(torneio.morada)}`} target="_blank" rel="noopener">Abrir no mapa →</a></p>
+        </article>
+      </div>
+      <p style="text-align:center;margin-top:2rem">
+        {torneio.inscricoes_abertas && <a class="btn btn-ouro" href="/inscricao/">Inscrever equipa</a>}
+      </p>
+    </div>
+  </section>
+</Base>

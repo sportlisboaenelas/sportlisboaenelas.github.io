@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import torneio from '../data/torneio.json';
+import edicoes from '../data/edicoes.json';
+---
+
+<Base titulo="Edições anteriores" descricao={`A história do ${torneio.nome}: edições anteriores, vencedores e fotografias.`}>
+  <div class="pagina-topo">
+    <div class="container">
+      <h1>Edições anteriores</h1>
+      <p>Recorde os melhores momentos do {torneio.nome}.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      {edicoes.items.map((e) => (
+        <article class="edicao revelar">
+          <div class="ano">{e.ano}</div>
+          <div>
+            <h3>{e.titulo}</h3>
+            <p>{e.resumo}</p>
+            {e.campeao && <p><span class="vencedor">🏆 Vencedor: {e.campeao}</span></p>}
+            {e.equipas && <p class="pequeno"><strong>Equipas:</strong> {e.equipas}</p>}
+            {e.fotos && e.fotos.length > 0 && (
+              <div class="galeria">
+                {e.fotos.map((f) => (
+                  <a href={f} target="_blank" rel="noopener"><img src={f} alt={`${e.titulo}`} loading="lazy" /></a>
+                ))}
+              </div>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</Base>

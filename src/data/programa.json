@@ -1,0 +1,27 @@
+{
+  "dias": [
+    {
+      "titulo": "Sábado",
+      "data": "26 de junho",
+      "eventos": [
+        { "hora": "08:30", "titulo": "Receção das equipas", "texto": "Acreditação e entrega do welcome kit." },
+        { "hora": "09:30", "titulo": "Cerimónia de abertura", "texto": "Desfile das equipas e hino." },
+        { "hora": "10:00", "titulo": "Início da fase de grupos", "texto": "Jogos em vários campos em simultâneo." },
+        { "hora": "13:00", "titulo": "Pausa para almoço", "texto": "Zona de restauração aberta a todos." },
+        { "hora": "15:00", "titulo": "Fase de grupos (tarde)", "texto": "Continuação dos jogos." },
+        { "hora": "19:00", "titulo": "Fim do primeiro dia", "texto": "" }
+      ]
+    },
+    {
+      "titulo": "Domingo",
+      "data": "27 de junho",
+      "eventos": [
+        { "hora": "09:00", "titulo": "Fase final", "texto": "Meias-finais e jogos de atribuição de lugares." },
+        { "hora": "13:00", "titulo": "Almoço", "texto": "" },
+        { "hora": "15:00", "titulo": "Finais", "texto": "Finais de todas as categorias." },
+        { "hora": "18:00", "titulo": "Entrega de prémios", "texto": "Troféus, medalhas e prémios individuais." },
+        { "hora": "19:00", "titulo": "Encerramento", "texto": "" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import pontos from '../data/pontos.json';
+---
+
+<Base titulo="Visitar Nelas" descricao="Locais para conhecer em Nelas e na região do Dão enquanto está no Nelas Cup.">
+  <div class="pagina-topo">
+    <div class="container">
+      <h1>Visitar Nelas</h1>
+      <p>Aproveite o torneio para conhecer a vila, as aldeias e os sabores da região do Dão.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="grelha grelha-3">
+        {pontos.items.map((p, i) => (
+          <article class={`cartao ponto revelar atraso-${(i % 3) + 1}`}>
+            <div class="foto">
+              {p.imagem ? <img src={p.imagem} alt={p.nome} loading="lazy" /> : <span>📍</span>}
+            </div>
+            <div class="corpo">
+              <span class="tipo">{p.tipo}</span>
+              <h3>{p.nome}</h3>
+              <p>{p.descricao}</p>
+              {p.mapa && (
+                <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.mapa)}`} target="_blank" rel="noopener">
+                  Ver no mapa →
+                </a>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

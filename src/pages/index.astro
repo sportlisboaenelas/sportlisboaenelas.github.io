@@ -1,0 +1,188 @@
+---
+import Base from '../layouts/Base.astro';
+import torneio from '../data/torneio.json';
+import edicoes from '../data/edicoes.json';
+import pontos from '../data/pontos.json';
+import noticias from '../data/noticias.json';
+import patrocinadores from '../data/patrocinadores.json';
+
+const ultimasNoticias = [...noticias.items].sort((a, b) => (a.data < b.data ? 1 : -1)).slice(0, 3);
+const ultimasEdicoes = edicoes.items.slice(0, 3);
+const destaquePontos = pontos.items.slice(0, 3);
+const patroDuplo = [...patrocinadores.items, ...patrocinadores.items];
+const categoriasDuplo = [...torneio.categorias, ...torneio.categorias, ...torneio.categorias, ...torneio.categorias];
+const icones = ['⚽', '🎉', '🏆', '🤝'];
+const formatarData = (d) => new Date(d + 'T12:00:00').toLocaleDateString('pt-PT', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+
+<Base>
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="container hero-grid">
+      <div>
+        <span class="etiqueta entrada">{torneio.data_texto}</span>
+        <h1 class="entrada d1">{torneio.nome}<span>{torneio.edicao}</span></h1>
+        <p class="lead entrada d2">{torneio.slogan}. {torneio.descricao}</p>
+        <div class="hero-acoes entrada d3">
+          {torneio.inscricoes_abertas ? (
+            <a href="/inscricao/" class="btn btn-ouro pulsar">Inscrever a minha equipa →</a>
+          ) : (
+            <span class="btn btn-contorno">Inscrições encerradas</span>
+          )}
+          <a href="/programa/" class="btn btn-contorno">Ver programa</a>
+        </div>
+        <div class="placar entrada d4" data-contagem={torneio.data_inicio} aria-label="Contagem decrescente para o torneio">
+          <div class="cx"><span class="num" data-d>0</span><span class="leg">dias</span></div>
+          <div class="cx"><span class="num" data-h>00</span><span class="leg">horas</span></div>
+          <div class="cx"><span class="num" data-m>00</span><span class="leg">min</span></div>
+          <div class="cx"><span class="num" data-s>00</span><span class="leg">seg</span></div>
+        </div>
+      </div>
+      <div class="hero-logo entrada d2">
+        <img src="/images/logo-sln.jpg" alt="Escudo do Sport Lisboa e Nelas" width="340" height="340" />
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="secao-titulo centro revelar">
+        <span class="sobretitulo">O torneio</span>
+        <h2>Futebol, festa e convívio</h2>
+        <p>{torneio.descricao}</p>
+      </div>
+      <div class="grelha grelha-3">
+        {torneio.o_que_inclui.map((item, i) => (
+          <article class={`cartao revelar atraso-${(i % 3) + 1}`}>
+            <div class="icone">{icones[i % icones.length]}</div>
+            <h3>{item.titulo}</h3>
+            <p style="margin:0">{item.texto}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="escura">
+    <div class="container numeros">
+      <div class="numero revelar">
+        <div class="n" data-contar={torneio.equipas_previstas}>0</div>
+        <div class="l">Equipas previstas</div>
+      </div>
+      <div class="numero revelar atraso-1">
+        <div class="n" data-contar={torneio.categorias.length}>0</div>
+        <div class="l">Categorias</div>
+      </div>
+      <div class="numero revelar atraso-2">
+        <div class="n" data-contar={torneio.dias}>0</div>
+        <div class="l">Dias de torneio</div>
+      </div>
+      <div class="numero revelar atraso-3">
+        <div class="n" data-contar={edicoes.items.length}>0</div>
+        <div class="l">Edições anteriores</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="faixa" aria-hidden="true">
+    <div class="faixa-pista">
+      {categoriasDuplo.map((c) => (<span>⚽ {c}</span>))}
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="secao-titulo revelar">
+        <span class="sobretitulo">Atualidade</span>
+        <h2>Últimas notícias</h2>
+      </div>
+      <div class="grelha grelha-3">
+        {ultimasNoticias.map((n, i) => (
+          <article class={`cartao noticia revelar atraso-${i + 1}`}>
+            <div class="capa">{n.imagem ? <img src={n.imagem} alt={n.titulo} loading="lazy" /> : <span>📰</span>}</div>
+            <div class="corpo">
+              <span class="data">{formatarData(n.data)}</span>
+              <h3>{n.titulo}</h3>
+              <p style="margin:0">{n.resumo}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+      <p class="centro" style="margin-top:2rem"><a class="btn btn-escuro" href="/noticias/">Todas as notícias</a></p>
+    </div>
+  </section>
+
+  <section class="branca">
+    <div class="container">
+      <div class="secao-titulo revelar">
+        <span class="sobretitulo">Memórias</span>
+        <h2>Edições anteriores</h2>
+      </div>
+      {ultimasEdicoes.map((e) => (
+        <article class="edicao revelar">
+          <div class="ano">{e.ano}</div>
+          <div>
+            <h3>{e.titulo}</h3>
+            <p>{e.resumo}</p>
+            {e.campeao && <span class="vencedor">🏆 {e.campeao}</span>}
+          </div>
+        </article>
+      ))}
+      <p class="centro"><a class="btn btn-escuro" href="/edicoes/">Ver todas as edições</a></p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="secao-titulo revelar">
+        <span class="sobretitulo">Fique mais um dia</span>
+        <h2>Visite Nelas</h2>
+        <p>Aproveite a viagem para conhecer a vila e a região do Dão.</p>
+      </div>
+      <div class="grelha grelha-3">
+        {destaquePontos.map((p, i) => (
+          <article class={`cartao ponto revelar atraso-${i + 1}`}>
+            <div class="foto">{p.imagem ? <img src={p.imagem} alt={p.nome} loading="lazy" /> : <span>📍</span>}</div>
+            <div class="corpo">
+              <span class="tipo">{p.tipo}</span>
+              <h3>{p.nome}</h3>
+              <p>{p.descricao}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+      <p class="centro" style="margin-top:2rem"><a class="btn btn-escuro" href="/nelas/">Ver todos os locais</a></p>
+    </div>
+  </section>
+
+  <section class="branca">
+    <div class="container">
+      <div class="secao-titulo centro revelar">
+        <span class="sobretitulo">Quem nos apoia</span>
+        <h2>Patrocinadores</h2>
+      </div>
+    </div>
+    <div class="patro-faixa revelar">
+      <div class="patro-pista">
+        {patroDuplo.map((p) => (
+          <a class="patro" href={p.link || '/patrocinadores/'}>
+            {p.logo ? <img src={p.logo} alt={p.nome} loading="lazy" /> : p.nome}
+          </a>
+        ))}
+      </div>
+    </div>
+    <p class="centro" style="margin-top:2rem"><a class="btn btn-vermelho" href="/patrocinadores/#proposta">Quero patrocinar</a></p>
+  </section>
+
+  {torneio.inscricoes_abertas && (
+    <section>
+      <div class="container">
+        <div class="chamada revelar">
+          <h2>A sua equipa já está inscrita?</h2>
+          <p>Preencha o formulário com os dados do clube e das equipas. Demora poucos minutos.</p>
+          <a href="/inscricao/" class="btn btn-ouro pulsar">Fazer inscrição</a>
+        </div>
+      </div>
+    </section>
+  )}
+</Base>

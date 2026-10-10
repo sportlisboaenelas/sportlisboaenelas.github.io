@@ -1,0 +1,8 @@
+{
+  "aviso": "Calendário de exemplo. Será atualizado depois do fecho das inscrições.",
+  "items": [
+    { "dia": "Sábado, 26 de junho", "hora": "10:00", "categoria": "Sub-11", "fase": "Grupo A", "campo": "Campo 1", "casa": "Equipa A", "fora": "Equipa B", "golos_casa": "", "golos_fora": "" },
+    { "dia": "Sábado, 26 de junho", "hora": "10:40", "categoria": "Sub-11", "fase": "Grupo A", "campo": "Campo 1", "casa": "Equipa C", "fora": "Equipa D", "golos_casa": "", "golos_fora": "" },
+    { "dia": "Sábado, 26 de junho", "hora": "10:00", "categoria": "Sub-9", "fase": "Grupo A", "campo": "Campo 2", "casa": "Equipa E", "fora": "Equipa F", "golos_casa": "", "golos_fora": "" }
+  ]
+}
